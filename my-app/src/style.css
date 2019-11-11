@@ -1,0 +1,82 @@
+.App {
+  margin: 50px auto;
+  max-width: 700px;
+  border: 1px solid #000;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+}
+
+.container.header {
+  justify-content: space-between;
+}
+
+.container:not(:last-child) {
+  border-bottom: 1px solid #000;
+}
+
+.container.header .logo {
+  margin-right: 10px;
+}
+
+.container.header .search {
+  float: right;
+}
+
+.container.header .search input,
+.container.header .search button {
+  padding: 8px;
+}
+
+.container.header .search input {
+  width: 400px;
+  margin-right: 10px;
+  border: 1px solid #000;
+}
+
+.container.header .search input::placeholder {
+  opacity: 0.5;
+}
+
+.container.header .search input::before {
+  background-image: url("./search.png");
+  position: absolute;
+  left: 10px;
+  width: 20px;
+  height: 20px;
+}
+
+.container.header .search button {
+  border-radius: 0;
+  border: 1px solid #000;
+  background-color: #f1f1f1;
+  color: #000;
+  padding: 8px 25px;
+}
+
+.container.filter {
+  justify-content: space-between;
+}
+
+.container.list table {
+  border: 1px solid #000;
+}
+
+.container.list table tr:first-child {
+  background-color: #d9d9d9;
+}
+
+.container.list table tr td,
+.container.list table tr th {
+  padding: 8px;
+}
+
+.container.list table tr td:not(:last-child),
+.container.list table tr th:not(:last-child) {
+  border-right: 1px solid #000;
+}
