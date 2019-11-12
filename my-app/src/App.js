@@ -8,9 +8,7 @@ class App extends React.Component {
   state = {
     search: "",
     books: books,
-    selected: {},
-    from: "",
-    to: ""
+    selected: {}
   };
 
   getBooksByYear = e => {
