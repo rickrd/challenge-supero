@@ -16,7 +16,7 @@
   justify-content: space-between;
 }
 
-.container:not(:last-child) {
+.container:not(:nth-child(3)) {
   border-bottom: 1px solid #000;
 }
 
@@ -63,6 +63,36 @@
   justify-content: space-between;
 }
 
+.container.filter .filters {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.container.filter .filters input {
+  max-width: 50px;
+  margin: 0 10px;
+}
+
+.container.filter .filters form, .container.filter .filters form div {
+  display: flex;
+  align-items: center;
+}
+
+ .container.filter .filters form div {
+  margin-right: 10px;
+}
+
+.container.filter .calendar {
+  background-image: url("./calendar.png");
+  display: block;
+  width: 20px;
+  height: 20px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
 .container.list table {
   border: 1px solid #000;
 }
@@ -79,4 +109,31 @@
 .container.list table tr td:not(:last-child),
 .container.list table tr th:not(:last-child) {
   border-right: 1px solid #000;
+}
+
+.ReactTable .rt-tbody .rt-td:not(:last-child) {
+  border-right: 1px solid #000 !important;
+}
+
+.ReactTable .rt-tbody .rt-tr-group:nth-child(odd) .rt-tr {
+  background-color: #e1e1e1;
+}
+
+.ReactTable .rt-thead .rt-tr {
+  background-color: #c1c1c1;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  margin-right: 1px;
+  background-color: #e1e1e1;
+  padding: 10px;
+}
+
+.details div:first-child {
+  font-weight: bold;
 }

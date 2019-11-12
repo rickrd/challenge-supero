@@ -1,0 +1,50 @@
+[
+  {
+    "title": "O Pequeno Principe",
+    "isbn": "1231231231231",
+    "author": "Horper Collins",
+    "editor": "Antoine de Saint-Exupery",
+    "year": "2012",
+    "language": "English",
+    "weight": "10",
+    "width": "100",
+    "height": "100",
+    "length": "200"
+  },
+  {
+    "title": "O Grande Principe",
+    "isbn": "1231231231232",
+    "author": "Horper Grande",
+    "editor": "Antoine de Grande",
+    "year": "2011",
+    "language": "English",
+    "weight": "10",
+    "width": "100",
+    "height": "100",
+    "length": "200"
+  },
+  {
+    "title": "O Grandioso Principe",
+    "isbn": "1231231231252",
+    "author": "Horper Grandioso",
+    "editor": "Antoine de Grandioso",
+    "year": "2005",
+    "language": "English",
+    "weight": "10",
+    "width": "100",
+    "height": "100",
+    "length": "200"
+  },
+  {
+    "title": "O Pequenino Principe",
+    "isbn": "1231231221532",
+    "author": "Horper Pequenino",
+    "editor": "Antoine de Pequenino",
+    "year": "2001",
+    "language": "English",
+    "weight": "10",
+    "width": "100",
+    "height": "100",
+    "length": "200"
+  }
+]

@@ -1,57 +1,84 @@
-import React, { Component } from "react"
-import "./style.css"
+import React, { Component } from "react";
+import "./style.css";
+import books from "./books.json";
+import ReactTable from "react-table";
+import "react-table/react-table.css";
 
 class App extends React.Component {
-  books = [
-    {
-      title: "O Pequeno Principe",
-      isbn: "1231231231231",
-      author: "Horper Collins",
-      editor: "Antoine de Saint-Exupery",
-      year: "2011",
-      language: "English",
-      weight: "10",
-      width: "100",
-      height: "100",
-      length: "200"
-    },
-    {
-      title: "O Grande Principe",
-      isbn: "1231231231232",
-      author: "Horper Grande",
-      editor: "Antoine de Grande",
-      year: "2011",
-      language: "English",
-      weight: "10",
-      width: "100",
-      height: "100",
-      length: "200"
-    }
-  ]
-
   state = {
     search: "",
-    books: this.books
-  }
+    books: books,
+    selected: {},
+    from: "",
+    to: ""
+  };
+
+  getBooksByYear = e => {
+    let result;
+    e.target.name == "from"
+      ? (result = books.filter(book => book.year >= e.target.value))
+      : (result = books.filter(book => book.year <= e.target.value));
+    this.setState({ books: result });
+  };
 
   getBooks = e => {
-    e.preventDefault()
-    const { books } = this
-    const { search } = this.state
-    console.log(search)
+    e.preventDefault();
+    const { search } = this.state;
 
     const result = search
       ? books.filter(book => {
-          return book.title.toLowerCase() == search.toLowerCase() || book.author.toLowerCase() == search.toLowerCase() || book.isbn == search
+          return (
+            book.title.toLowerCase() == search.toLowerCase() ||
+            book.author.toLowerCase() == search.toLowerCase() ||
+            book.isbn == search
+          );
         })
-      : books
+      : books;
 
-    console.log(result)
-    this.setState({ search: "", books: result })
-  }
+    this.setState({ search: "", books: result });
+  };
 
   render() {
-    const { books, search } = this.state
+    const { books, search, selected } = this.state;
+
+    const columns = [
+      {
+        Header: "Livro",
+        accessor: "title"
+      },
+      {
+        Header: "Autor",
+        accessor: "author"
+      },
+      {
+        Header: "Editora",
+        accessor: "editor"
+      },
+      {
+        Header: "Ano",
+        accessor: "year"
+      },
+      {
+        Header: "Ações",
+        accessor: "action",
+        Cell: (
+          <a
+            href="#"
+            onClick={e => {
+              this.setState({
+                selected: books.filter(
+                  book =>
+                    book.title ==
+                    e.currentTarget.parentNode.parentNode.firstChild.innerHTML
+                )
+              });
+            }}
+          >
+            Detalhes
+          </a>
+        )
+      }
+    ];
 
     return (
       <div className="App">
@@ -65,7 +92,7 @@ class App extends React.Component {
                 name="search"
                 value={search}
                 onChange={e => {
-                  this.setState({ search: e.target.value })
+                  this.setState({ search: e.target.value });
                 }}
                 placeholder="Busque livros pelo título, autor ou ISBN"
               ></input>
@@ -74,38 +101,47 @@ class App extends React.Component {
           </div>
         </div>
         <div className="container filter">
-          <div className="filters">Filtrar ano de publicação:</div>
+          <div className="filters">
+            Filtrar ano de publicação:
+            <form>
+              <div>
+                <input name="from" onInput={this.getBooksByYear}></input>
+                <span className="calendar"></span>
+              </div>
+              ate
+              <div>
+                <input name="to" onInput={this.getBooksByYear}></input>
+                <span className="calendar"></span>
+              </div>
+            </form>
+          </div>
           <div className="result">{books.length} resultados encontrados</div>
         </div>
         <div className="container list">
-          <table cellSpacing="0">
-            <tr>
-              <th>Livro</th>
-              <th>Autor</th>
-              <th>Editora</th>
-              <th>Ano</th>
-              <th>Ações</th>
-            </tr>
-            {books.map(book => (
-              <tr>
-                <td>
-                  {book.title}
-                  <br />
-                  {book.isbn}
-                </td>
-                <td>{book.author}</td>
-                <td>{book.editor}</td>
-                <td>{book.year}</td>
-                <td>
-                  <a href="#">Detalhes</a>
-                </td>
-              </tr>
-            ))}
-          </table>
+          <ReactTable
+            data={books}
+            columns={columns}
+            defaultPageSize="10"
+          ></ReactTable>
         </div>
+        {selected[0] && (
+          <div className="details">
+            <div>Detalhes do livro selecionado:</div>
+            <div>Título: {selected[0].title}</div>
+            <div>ISBN: {selected[0].isbn}</div>
+            <div>Autor: {selected[0].author}</div>
+            <div>Editor: {selected[0].editor}</div>
+            <div>Ano: {selected[0].year}</div>
+            <div>Idioma: {selected[0].language}</div>
+            <div>Peso: {selected[0].weight}</div>
+            <div>Largura: {selected[0].width}</div>
+            <div>Altura: {selected[0].height}</div>
+            <div>Comprimento: {selected[0].length}</div>
+          </div>
+        )}
       </div>
-    )
+    );
   }
 }
 
-export default App
+export default App;

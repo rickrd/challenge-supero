@@ -26,6 +26,11 @@
       "src": "search.png",
       "type": "image/png",
       "sizes": "20x20"
+    },
+    {
+      "src": "calendar.png",
+      "type": "image/png",
+      "sizes": "30x30"
     }
   ],
   "start_url": ".",
