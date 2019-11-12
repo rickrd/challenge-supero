@@ -13,10 +13,16 @@ class App extends React.Component {
 
   getBooksByYear = e => {
     let result;
-    e.target.name == "from"
-      ? (result = books.filter(book => book.year >= e.target.value))
-      : (result = books.filter(book => book.year <= e.target.value));
-    this.setState({ books: result });
+    if (!e.target.value.length) {
+      this.setState({ books: books });
+    } else if (e.target.value.length < 4) return null;
+    else {
+      const { books } = this.state;
+      e.target.name == "from"
+        ? (result = books.filter(book => book.year >= e.target.value))
+        : (result = books.filter(book => book.year <= e.target.value));
+      this.setState({ books: result });
+    }
   };
 
   getBooks = e => {
